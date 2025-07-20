@@ -6,9 +6,11 @@ import com.example.demo.repo.RoleRepository;
 import com.example.demo.repo.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -17,7 +19,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-
+    //creating User
     @Override
     public User createUser(User user, Set<UserRole> userRoles) throws Exception {
         User local = this.userRepository.findByUsername(user.getUsername());
@@ -35,5 +37,21 @@ public class UserServiceImpl implements UserService {
         }
 
         return local;
+    }
+
+    //get user by username
+    @Override
+    public User getUser(String username)  {
+        return this.userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User deleteUser(Long userId) throws Exception {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            throw new Exception("User not found");
+        }
+        userRepository.deleteById(userId);
+        return user;
     }
 }
