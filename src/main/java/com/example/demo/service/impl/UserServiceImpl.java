@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.helper.UserFoundException;
 import com.example.demo.model.User;
 import com.example.demo.model.UserRole;
 import com.example.demo.repo.RoleRepository;
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
         User local = this.userRepository.findByUsername(user.getUsername());
         if(local != null) {
             System.out.println("User already exists");
-            throw new Exception("User already exists");
+            throw new UserFoundException();
         } else {
             // Create new user
             for (UserRole userRole : userRoles) {
