@@ -8,6 +8,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Long quesId;
+    @Column(length = 5000)
     private String content;
 
     private String image;
@@ -96,4 +97,6 @@ public class Question {
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
     }
+
+
 }

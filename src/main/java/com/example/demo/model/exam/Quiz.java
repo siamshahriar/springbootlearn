@@ -11,7 +11,7 @@ public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long qId;
 
     private String title;
 
@@ -33,12 +33,12 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getqId() {
+        return qId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setqId(Long qId) {
+        this.qId = qId;
     }
 
     public String getTitle() {
